@@ -2,7 +2,7 @@ import { JwtAuthConfig } from './JwtAuthProvider';
 
 const jwtAuthConfig: JwtAuthConfig = {
 	tokenStorageKey: 'jwt_access_token',
-	signInUrl: 'mock-api/auth/sign-in',
+	signInUrl: 'http://13.234.232.10/api/login',
 	signUpUrl: 'mock-api/auth/sign-up',
 	tokenRefreshUrl: 'mock-api/auth/refresh',
 	getUserUrl: 'mock-api/auth/user',

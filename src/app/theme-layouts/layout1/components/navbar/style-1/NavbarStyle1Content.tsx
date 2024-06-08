@@ -6,19 +6,19 @@ import Navigation from 'app/theme-layouts/shared-components/navigation/Navigatio
 import NavbarToggleButton from 'app/theme-layouts/shared-components/navbar/NavbarToggleButton';
 import Logo from '../../../../shared-components/Logo';
 import UserNavbarHeader from '../../../../shared-components/UserNavbarHeader';
+import { useAppSelector } from 'app/store/hooks';
+import { selectUserRole } from 'src/app/auth/user/store/userSlice';
 
 const Root = styled('div')(({ theme }) => ({
 	backgroundColor: theme.palette.background.default,
 	color: theme.palette.text.primary,
 	'& ::-webkit-scrollbar-thumb': {
-		boxShadow: `inset 0 0 0 20px ${
-			theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.24)' : 'rgba(255, 255, 255, 0.24)'
-		}`
+		boxShadow: `inset 0 0 0 20px ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.24)' : 'rgba(255, 255, 255, 0.24)'
+			}`
 	},
 	'& ::-webkit-scrollbar-thumb:active': {
-		boxShadow: `inset 0 0 0 20px ${
-			theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.37)' : 'rgba(255, 255, 255, 0.37)'
-		}`
+		boxShadow: `inset 0 0 0 20px ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.37)' : 'rgba(255, 255, 255, 0.37)'
+			}`
 	}
 }));
 
@@ -41,7 +41,7 @@ type NavbarStyle1ContentProps = {
  */
 function NavbarStyle1Content(props: NavbarStyle1ContentProps) {
 	const { className = '' } = props;
-
+	const userRole = useAppSelector(selectUserRole)
 	return (
 		<Root className={clsx('flex h-full flex-auto flex-col overflow-hidden', className)}>
 			<div className="flex h-48 shrink-0 flex-row items-center px-20 md:h-72">

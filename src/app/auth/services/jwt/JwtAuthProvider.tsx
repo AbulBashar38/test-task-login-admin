@@ -218,7 +218,7 @@ function JwtAuthProvider(props: JwtAuthProviderProps) {
 			const userData = response?.data?.user;
 			const accessToken = response?.data?.token;
 
-			handleSuccess(userData, accessToken);
+			handleSuccess({ ...userData, role: userData.role }, accessToken);
 
 			return userData;
 		} catch (error) {
@@ -232,7 +232,12 @@ function JwtAuthProvider(props: JwtAuthProviderProps) {
 
 	// Refactor signIn function
 	const signIn = (credentials: SignInPayload) => {
-		return handleRequest(config.signInUrl, credentials, handleSignInSuccess, handleSignInFailure);
+		return handleRequest(
+			`${config.signInUrl}?email=${credentials.email}&password=${credentials.password}`,
+			credentials,
+			handleSignInSuccess,
+			handleSignInFailure
+		);
 	};
 
 	// Refactor signUp function
