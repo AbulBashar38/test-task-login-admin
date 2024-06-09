@@ -4,6 +4,7 @@ import { FuseSettingsConfigType } from '@fuse/core/FuseSettings/FuseSettings';
  * The type definition for a user object.
  */
 export type User = {
+	name: string;
 	uid: string;
 	role: string[] | string | null;
 	data: {

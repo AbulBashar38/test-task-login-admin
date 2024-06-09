@@ -166,34 +166,19 @@ function JwtAuthProvider(props: JwtAuthProviderProps) {
 		const attemptAutoLogin = async () => {
 			const accessToken = getAccessToken();
 
-			if (isTokenValid(accessToken)) {
-
-				try {
-					setIsLoading(true);
-
-					const response: AxiosResponse<User> = await axios.get(config.getUserUrl, {
-						headers: { Authorization: `Bearer ${accessToken}` }
-					});
-					const userData = response?.data;
-
-					handleSignInSuccess(userData, accessToken);
-
-					return true;
-				} catch (error) {
-					const axiosError = error as AxiosError;
-
-					handleSignInFailure(axiosError);
-					return false;
-				}
-			} else {
-				resetSession();
-				return false;
+			if (accessToken) {
+				setIsLoading(true);
+				return true;
 			}
+
+			resetSession();
+			return false;
 		};
 
 		if (!isAuthenticated) {
 			attemptAutoLogin().then((signedIn) => {
 				setIsLoading(false);
+
 				setAuthStatus(signedIn ? 'authenticated' : 'unauthenticated');
 			});
 		}

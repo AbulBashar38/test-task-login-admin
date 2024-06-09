@@ -93,7 +93,7 @@ function Authentication(props: AuthenticationProps) {
 	 * Loading state is false when all services are done loading
 	 */
 	useEffect(() => {
-		if (!inProgress && !authenticated) {
+		if (!inProgress) {
 			setIsLoading(false);
 		}
 	}, [inProgress, authenticated]);
@@ -102,7 +102,18 @@ function Authentication(props: AuthenticationProps) {
 	 * Handle sign in
 	 */
 	const handleSignIn = useCallback((provider: string, userState: User) => {
-		dispatch(setUser(userState)).then(() => {
+		dispatch(
+			setUser({
+				...userState,
+				data: {
+					displayName: userState?.name,
+					photoURL: '',
+					email: '',
+					shortcuts: [],
+					settings: {}
+				}
+			})
+		).then(() => {
 			setAuthProvider(provider);
 			setIsLoading(false);
 		});

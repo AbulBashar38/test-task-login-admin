@@ -10,8 +10,9 @@ import routes from 'app/configs/routesConfig';
 import { useMemo } from 'react';
 import { Provider } from 'react-redux';
 import ErrorBoundary from '@fuse/utils/ErrorBoundary';
+import { PersistGate } from 'redux-persist/integration/react';
 import AppContext from './AppContext';
-import store from './store/store';
+import store, { persistor } from './store/store';
 
 type ComponentProps = {
 	name?: string;
@@ -40,9 +41,14 @@ function withAppProviders(Component: React.ComponentType<ComponentProps>) {
 				<AppContext.Provider value={val}>
 					<LocalizationProvider dateAdapter={AdapterDateFns}>
 						<Provider store={store}>
-							<StyledEngineProvider injectFirst>
-								<Component {...props} />
-							</StyledEngineProvider>
+							<PersistGate
+								loading={null}
+								persistor={persistor}
+							>
+								<StyledEngineProvider injectFirst>
+									<Component {...props} />
+								</StyledEngineProvider>
+							</PersistGate>
 						</Provider>
 					</LocalizationProvider>
 				</AppContext.Provider>
