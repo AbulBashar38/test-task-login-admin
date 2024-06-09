@@ -178,7 +178,7 @@ function JwtAuthProvider(props: JwtAuthProviderProps) {
 		if (!isAuthenticated) {
 			attemptAutoLogin().then((signedIn) => {
 				setIsLoading(false);
-
+				setIsAuthenticated(signedIn)
 				setAuthStatus(signedIn ? 'authenticated' : 'unauthenticated');
 			});
 		}
@@ -234,6 +234,7 @@ function JwtAuthProvider(props: JwtAuthProviderProps) {
 	 * Sign out
 	 */
 	const signOut = useCallback(() => {
+
 		resetSession();
 
 		setIsAuthenticated(false);

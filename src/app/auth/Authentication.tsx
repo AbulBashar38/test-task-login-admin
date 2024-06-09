@@ -84,10 +84,11 @@ function Authentication(props: AuthenticationProps) {
 	 * Sign Out
 	 */
 	useEffect(() => {
+
 		if (!inProgress && unAuthenticated) {
 			handleSignOut();
 		}
-	}, [inProgress, authenticated]);
+	}, [inProgress, authenticated, unAuthenticated]);
 
 	/**
 	 * Loading state is false when all services are done loading
