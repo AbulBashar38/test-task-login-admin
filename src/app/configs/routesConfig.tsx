@@ -8,8 +8,10 @@ import SignUpConfig from '../main/sign-up/SignUpConfig';
 import SignOutConfig from '../main/sign-out/SignOutConfig';
 import Error404Page from '../main/404/Error404Page';
 import ExampleConfig from '../main/example/ExampleConfig';
+import userDashConfig from '../main/userDash/UserDashConfig';
+import AdminProfileConfig from '../main/adminProfile/AdminProfileConfig';
 
-const routeConfigs: FuseRouteConfigsType = [ExampleConfig, SignOutConfig, SignInConfig, SignUpConfig];
+const routeConfigs: FuseRouteConfigsType = [ExampleConfig, SignOutConfig, SignInConfig, SignUpConfig, userDashConfig,AdminProfileConfig];
 
 /**
  * The routes of the application.

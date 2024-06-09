@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import { memo } from 'react';
 import Navigation from 'app/theme-layouts/shared-components/navigation/Navigation';
 import NavbarToggleButton from 'app/theme-layouts/shared-components/navbar/NavbarToggleButton';
+import { selectUserRole } from 'src/app/auth/user/store/userSlice';
+import { useAppSelector } from 'app/store/hooks';
 import Logo from '../../../../shared-components/Logo';
 import UserNavbarHeader from '../../../../shared-components/UserNavbarHeader';
-import { useAppSelector } from 'app/store/hooks';
-import { selectUserRole } from 'src/app/auth/user/store/userSlice';
 
 const Root = styled('div')(({ theme }) => ({
 	backgroundColor: theme.palette.background.default,
@@ -58,7 +58,10 @@ function NavbarStyle1Content(props: NavbarStyle1ContentProps) {
 			>
 				<UserNavbarHeader />
 
-				<Navigation layout="vertical" />
+				<Navigation
+					layout="vertical"
+					checkPermission
+				/>
 
 				<div className="flex-0 flex items-center justify-center py-48 opacity-10">
 					<img

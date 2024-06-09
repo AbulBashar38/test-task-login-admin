@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from 'app/store/hooks';
 import FuseSplashScreen from '@fuse/core/FuseSplashScreen/FuseSplashScreen';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { fetchUserAttributes } from '@aws-amplify/auth';
+import { adminNavigationConfig, userNavigationConfig } from 'app/configs/navigationConfig';
+import { setNavigation } from 'app/theme-layouts/shared-components/navigation/store/navigationSlice';
 import { resetUser, selectUserRole, setUser } from './user/store/userSlice';
 import useAuth from './useAuth';
 import UserModel from './user/models/UserModel';
@@ -118,6 +120,7 @@ function Authentication(props: AuthenticationProps) {
 			setAuthProvider(provider);
 			setIsLoading(false);
 		});
+		dispatch(setNavigation(userState?.role === 'admin' ? adminNavigationConfig : userNavigationConfig))
 	}, []);
 
 	/**

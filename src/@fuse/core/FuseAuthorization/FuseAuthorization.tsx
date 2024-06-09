@@ -84,9 +84,9 @@ class FuseAuthorization extends Component<FuseAuthorizationProps, State> {
 
 		const ignoredPaths = ['/', '/callback', '/sign-in', '/sign-out', '/logout', '/404'];
 
-		if (matched && !userHasPermission && !ignoredPaths.includes(pathname)) {
-			setSessionRedirectUrl(pathname);
-		}
+		// if (matched && !userHasPermission && !ignoredPaths.includes(pathname)) {
+		// 	setSessionRedirectUrl(pathname);
+		// }
 
 		/**
 		 * If user is member but don't have permission to view the route
